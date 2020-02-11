@@ -28,7 +28,7 @@ R package "CDJNC" for the Jacobi type CD algorithm with warmstarts in high-dimen
 	print("Generate data in C++ process time:")
 	print(process_time)
 	#CDJ algorithm
-	nx = data[[6]]; ny = data[[7]]; d = data[[8]]
+	nx = data$nx; ny = data$ny; d = data$d
 	pen = "scad"; nnn = "sqrtn"; N = 100; Lmin = 1e-5; ga = 4; mu = 0.5; imax = 1; tol = 1e-5
 	tic = proc.time()
 	res_c = tune_cdj(nx,ny,pen,nnn,N,Lmin,ga,mu,imax,tol)
