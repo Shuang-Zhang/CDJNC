@@ -87,19 +87,17 @@ BEGIN_RCPP
 END_RCPP
 }
 // lamfun
-std::vector<Eigen::VectorXd> lamfun(Eigen::MatrixXd& x, Eigen::VectorXd& y, int N, std::string pen, std::string nnn, double Lmin, double tau);
-RcppExport SEXP _CDJNC_lamfun(SEXP xSEXP, SEXP ySEXP, SEXP NSEXP, SEXP penSEXP, SEXP nnnSEXP, SEXP LminSEXP, SEXP tauSEXP) {
+std::vector<Eigen::VectorXd> lamfun(Eigen::MatrixXd& x, Eigen::VectorXd& y, int N, std::string nnn, double Lmin);
+RcppExport SEXP _CDJNC_lamfun(SEXP xSEXP, SEXP ySEXP, SEXP NSEXP, SEXP nnnSEXP, SEXP LminSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< Eigen::MatrixXd& >::type x(xSEXP);
     Rcpp::traits::input_parameter< Eigen::VectorXd& >::type y(ySEXP);
     Rcpp::traits::input_parameter< int >::type N(NSEXP);
-    Rcpp::traits::input_parameter< std::string >::type pen(penSEXP);
     Rcpp::traits::input_parameter< std::string >::type nnn(nnnSEXP);
     Rcpp::traits::input_parameter< double >::type Lmin(LminSEXP);
-    Rcpp::traits::input_parameter< double >::type tau(tauSEXP);
-    rcpp_result_gen = Rcpp::wrap(lamfun(x, y, N, pen, nnn, Lmin, tau));
+    rcpp_result_gen = Rcpp::wrap(lamfun(x, y, N, nnn, Lmin));
     return rcpp_result_gen;
 END_RCPP
 }

@@ -257,7 +257,7 @@ std::vector<Eigen::VectorXd> cdj(Eigen::MatrixXd &x, Eigen::VectorXd &y, Eigen::
 }
 
 //[[Rcpp::export]]
-std::vector<Eigen::VectorXd> lamfun(Eigen::MatrixXd &x, Eigen::VectorXd &y, int N=100, std::string pen="mcp", std::string nnn="sqrtn", double Lmin=1.0e-10, double tau=0.5){
+std::vector<Eigen::VectorXd> lamfun(Eigen::MatrixXd &x, Eigen::VectorXd &y, int N=100, std::string nnn="sqrtn", double Lmin=1.0e-10){
 	//pen in "mcp","scad"
 	int n = x.rows();
 	int p = x.cols();
@@ -270,9 +270,9 @@ std::vector<Eigen::VectorXd> lamfun(Eigen::MatrixXd &x, Eigen::VectorXd &y, int 
 	}
 	if(Lmin==1.0e-10){
 		if(n>p){
-			Lmin = 0.001;
+			Lmin = 1.0e-3;
 		}else{
-			Lmin = 0.01;
+			Lmin = 1.0e-5; 
 		}
 	}
 	Eigen::VectorXd Lam(N);
@@ -299,7 +299,7 @@ std::vector<Eigen::MatrixXd> tune_cdj(Eigen::MatrixXd &x, Eigen::VectorXd &y, st
 	//for later calculation
 	double n = (double) x.rows();
 	int p = x.cols();
-	std::vector<Eigen::VectorXd> Laa = lamfun(x,y,N,pen,nnn,Lmin);
+	std::vector<Eigen::VectorXd> Laa = lamfun(x,y,N,nnn,Lmin);
 	Eigen::VectorXd La = Laa[2];
 	Eigen::VectorXd beta0 = Eigen::VectorXd::Zero(p);
 	Eigen::VectorXd As = Eigen::VectorXd::Zero(N);
