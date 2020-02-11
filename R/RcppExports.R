@@ -2,11 +2,13 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 normalize <- function(x, y, nnn = "sqrtn") {
-    .Call(`_CDJNC_normalize`, x, y, nnn)
+    res = .Call(`_CDJNC_normalize`, x, y, nnn)
+	return(list(nx = res[[1]], ny = res[[2]], d = res[[3]]))
 }
 
 gdata <- function(n = 200L, p = 1000L, K = 10L, sigma = 0.1, ratio = 1.0, kind = 1L, rho = 1.0e-10, seed = 1L, isnorm = TRUE, nnn = "sqrtn", snr = 1.0e-10) {
-    .Call(`_CDJNC_gdata`, n, p, K, sigma, ratio, kind, rho, seed, isnorm, nnn, snr)
+    res = .Call(`_CDJNC_gdata`, n, p, K, sigma, ratio, kind, rho, seed, isnorm, nnn, snr)
+	return(list(btrue=res[[1]],A=res[[2]],x=res[[3]],y=res[[4]],ye=res[[5]],nx=res[[6]],ny=res[[7]],d=res[[8]]))
 }
 
 soft <- function(z, lambda = 1) {
@@ -18,14 +20,17 @@ thresh <- function(z, lambda = 1, gamma = 3, pen = "mcp") {
 }
 
 cdj <- function(x, y, beta0, pen = "mcp", nnn = "sqrtn", la = 1.0, ga = 3.0, mu = 0.5, imax = 5L, tol = 1.0e-5) {
-    .Call(`_CDJNC_cdj`, x, y, beta0, pen, nnn, la, ga, mu, imax, tol)
+    res = .Call(`_CDJNC_cdj`, x, y, beta0, pen, nnn, la, ga, mu, imax, tol)
+	return(list(ebeta=res[[1]],as=res[[2]][1],it=res[[3]][1]))
 }
 
-lamfun <- function(x, y, N = 100L, pen = "mcp", nnn = "sqrtn", Lmin = 1.0e-10, tau = 0.5) {
-    .Call(`_CDJNC_lamfun`, x, y, N, pen, nnn, Lmin, tau)
+lamfun_c <- function(x, y, N = 100L, nnn = "sqrtn", Lmin = 1.0e-10) {
+    res = .Call(`_CDJNC_lamfun`, x, y, N, nnn, Lmin)
+	return(list(linf=res[[1]][1], cnst=res[[2]][1], Lam=res[[3]]))
 }
 
 tune_cdj <- function(x, y, pen = "mcp", nnn = "sqrtn", N = 100L, Lmin = 1.0e-5, ga = 1.0e-10, mu = 0.5, imax = 1L, tol = 1.0e-5) {
-    .Call(`_CDJNC_tune_cdj`, x, y, pen, nnn, N, Lmin, ga, mu, imax, tol)
+    res = .Call(`_CDJNC_tune_cdj`, x, y, pen, nnn, N, Lmin, ga, mu, imax, tol)
+	return(list(behat=res[[1]],lahat=res[[2]][1],id=res[[3]][1],As=res[[4]],Beta=res[[5]],Bic=res[[6]],It=res[[7]],La=res[[8]]))
 }
 
