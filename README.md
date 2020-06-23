@@ -1,5 +1,5 @@
-# CDJNC
-R package "CDJNC" for the Jacobi type CD algorithm with warmstarts in high-dimension sparse estimation, which is proposed by Jiao et al. (2020+).
+# CDNJC
+R package "CDNJC" for the Jacobi type CD algorithm with warmstarts in high-dimension sparse estimation, which is proposed by Jiao et al. (2020+).
 # Installation
 
     #install.packages("devtools")
