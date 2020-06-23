@@ -6,9 +6,6 @@ R package "CDJNC" for the Jacobi type CD algorithm with warmstarts in high-dimen
     library(devtools)
     install_github("Shuang-Zhang/CDJNC")
 
-# Usage
-
-   - [x] [CDJNC-manual.pdf](https://github.com/Shuang-Zhang/CDJNC/blob/master/inst/CDJNC-manual.pdf) ---------- Details of the usage of the package(haven't been uploaded yet).
 # Example
     library(CDJNC)
 	#Settings
